@@ -1,0 +1,38 @@
+{
+  "name": "i3g-component",
+  "description": "Component",
+  "version": "0.0.1",
+  "homepage": "http://i-3global.com",
+  "main": "./dist/js/i3g-component.js",
+  "style": "./dist/scss/i3g-component.scss",
+  "sass": "./dist/scss/i3g-component.scss",
+  "author": {
+    "name": "Heath Showalter",
+    "url": "http://heathshowalter.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phreezer/i3g-component"
+  },
+  "bugs": {
+    "url": "https://github.com/phreezer/i3g-component/issues"
+  },
+  "keywords": [
+    "i3g"
+  ],
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-contrib-concat": "~1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "~2.2.0",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-uglify": "~3.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-sass": "^2.0.0",
+    "load-grunt-tasks": "^3.5.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "MIT"
+}

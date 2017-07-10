@@ -1,0 +1,31 @@
+{
+  "name": "i3g-component",
+  "version": "0.1",
+  "description": "",
+  "keywords": [
+	"i3g"
+  ],
+  "main": [
+	"dist/scss/i3g-component.scss",
+	"dist/js/i3g-component.js"
+  ],
+  "ignore": [
+	"docs",
+	"examples",
+	"libs",
+	".gitignore",
+	"bower.json",
+	"Gruntfile.js",
+	"package.json",
+	"README.md"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+	"jquery": "~1.11.0",
+	"json3": "~3.3.1",
+	"es5-shim": "~3.1.0",
+	"bootstrap-sass-official": "~3.3.6",
+	"q": "~1.0.1",
+	"html5shiv": "~3.7.3"
+  }
+}

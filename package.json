@@ -1,7 +1,7 @@
 {
   "name": "i3g-slider-preszler",
   "description": "Slidehow first used for Preszler & Bunch",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "http://i-3global.com",
   "main": "./dist/js/i3g-slider-preszler.js",
   "style": "./dist/scss/i3g-slider-preszler.scss",

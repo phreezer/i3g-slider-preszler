@@ -17,7 +17,7 @@
 			defaults = $.app.config,
 			cached = null;
 
-		defaults.API_ENDPOINT = 'EventCalendar';
+		defaults.API_ENDPOINT = 'options/slideshow';
 
 
 		function getConfig(defaults, options) {

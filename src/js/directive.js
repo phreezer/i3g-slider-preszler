@@ -11,7 +11,7 @@
 		var config = {};
 		var defaults = $.app.config;
 		var options = {
-			TEMPLATE_URL: ($.app.config.ASSETS_DIRECTORY || '') + 'views/slideshow.html',
+			TEMPLATE_URL: ($.app.config.ASSETS_DIRECTORY || '../') + 'views/slideshow.html',
 			TEMPLATE: ''
 		};
 		var scope = { slides: [] };

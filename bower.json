@@ -1,6 +1,6 @@
 {
 	"name": "i3g-slider-preszler",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "",
 	"authors": [
 		{
@@ -18,7 +18,7 @@
 	"i3g"
   ],
 	"main": [
-	"dist/scss/i3g-slider-preszler.scss",
+	"dist/scss/main.scss",
 	"dist/js/i3g-slider-preszler.js"
   ],
 	"ignore": [

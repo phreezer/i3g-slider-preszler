@@ -60,8 +60,13 @@
 			var deferred = Q.defer(),
 				url;
 
+			// @ifdef PROD
 			url = config.API_SERVER + config.API_PATH + config.API_ENDPOINT;
+			// @endif
 
+			// @ifdef DEBUG
+			url = 'json/slideshow.json';
+			// @endif
 
 			console.log('url:',url);
 			$.get(url, function (data) {
@@ -115,15 +120,16 @@
 		// Set Defaults
 		$.app = $.app || {};
 		$.app.config = $.app.config || {};
+		$.app.config.ASSETS_DIRECTORY = $('script[src*=i3g-slider-preszler]').attr('src').replace(/i3g-slider-preszler.js.*/gi, '') + '../';
 
 		var config = {};
 		var defaults = $.app.config;
 		var options = {
-			TEMPLATE_URL: ($.app.config.ASSETS_DIRECTORY || '../') + 'views/slideshow.html',
+			TEMPLATE_URL: ($.app.config.ASSETS_DIRECTORY || '') + 'views/slideshow.html',
 			TEMPLATE: ''
 		};
 		var scope = { slides: [] };
-		var elem = this[0];
+		var elem = this.selector;
 		var slider = {};
 
 

@@ -11,20 +11,22 @@
 	<div class="slideshow col-md-6 col-sm-12">
 		{{#each slides}}
 		<div class="slide">
-			<div class="slide-panel-left col-sm-6">
-				<div class="slide-bg" style="background-image: url('{{image.url}}');">
+			<a href="{{{url}}}" target="{{{url_target}}}">
+				<div class="slide-panel-left col-sm-6">
+					<div class="slide-bg" style="background-image: url('{{image.url}}');">
+					</div>
 				</div>
-			</div>
-			<div class="slide-panel-right col-sm-6">
-				<h2>{{{title}}}</h2>
-				<span class="line"></span>
-				<div class="caption-container">
-					<div class="caption">{{{description}}}</div>
+				<div class="slide-panel-right col-sm-6">
+					<h2>{{{title}}}</h2>
+					<span class="line"></span>
+					<div class="caption-container">
+						<div class="caption">{{{description}}}</div>
+					</div>
+					{{#if learn_more_button}}
+					<div class="btn btn-secondary hidden-sm">Learn More</div>
+					{{/if}}
 				</div>
-				{{#if learn_more_button}}
-				<a href="{{{url}}}" target="{{{url_target}}}"><div class="btn btn-primary">Learn More</div></a>
-				{{/if}}
-			</div>
+			</a>
 		</div>
 		{{/each}}
 	</div>

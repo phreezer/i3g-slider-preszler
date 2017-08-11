@@ -19,9 +19,6 @@
 	}
 
 
-
-
-
 	.slick-dots {
 		position: absolute;
 		bottom: -25px;
@@ -85,6 +82,22 @@
 		display: none !important;
 	}
 
+	.slide a,
+	.slide a:hover,
+	.slide a:focus {
+		color: $text-light;
+	}
+
+	.slide .btn {
+		border: 3px solid $brand-secondary;
+		border-radius: 0px;
+		color: $text-light;
+	}
+	.slide .btn:hover,
+	.slide .btn:focus {
+		color: darken($text-light, 30%);
+		border: 3px solid lighten($brand-secondary,30%);
+	}
 
 	.slide-panel-left {
 		position: relative;

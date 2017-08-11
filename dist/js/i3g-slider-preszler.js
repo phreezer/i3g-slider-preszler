@@ -1,5 +1,5 @@
 /*!
-* i3g-slider-preszler - v0.0.1
+* i3g-slider-preszler - v0.1.2
 * Homepage: http://i-3global.com
 * Author: i3Global
 * Author URL: http://i-3global.com/
@@ -23,7 +23,7 @@
 			defaults = $.app.config,
 			cached = null;
 
-		defaults.API_ENDPOINT = 'EventCalendar';
+		defaults.API_ENDPOINT = 'options/slideshow';
 
 
 		function getConfig(defaults, options) {
@@ -119,7 +119,7 @@
 		var config = {};
 		var defaults = $.app.config;
 		var options = {
-			TEMPLATE_URL: ($.app.config.ASSETS_DIRECTORY || '') + 'views/slideshow.html',
+			TEMPLATE_URL: ($.app.config.ASSETS_DIRECTORY || '../') + 'views/slideshow.html',
 			TEMPLATE: ''
 		};
 		var scope = { slides: [] };

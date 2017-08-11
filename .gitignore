@@ -2,7 +2,6 @@
 ## Directories
 #################
 node_modules
-dist
 .tmp
 .sass-cache
 bower_components
@@ -226,7 +225,6 @@ $RECYCLE.BIN/
 # Packages
 *.egg
 *.egg-info
-dist/
 build/
 eggs/
 parts/

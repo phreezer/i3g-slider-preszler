@@ -1,0 +1,40 @@
+<div class="slideshow-container row hidden-xs">
+	<div class="prev-slide-container col-md-3 hidden-xs hidden-sm">
+		<div class="prev-slide-text col-md-4">
+			<i class="icon-arrow-box fx-mirror"></i>
+			<span class="line"></span>
+			<h3 class="prev-text"></h3>
+		</div>
+		<div class="prev-slide-image col-md-6">
+		</div>
+	</div>
+	<div class="slideshow col-md-6 col-sm-12">
+		{{#each slides}}
+		<div class="slide">
+			<div class="slide-panel-left col-sm-6">
+				<div class="slide-bg" style="background-image: url('{{image.url}}');">
+				</div>
+			</div>
+			<div class="slide-panel-right col-sm-6">
+				<h2>{{{title}}}</h2>
+				<span class="line"></span>
+				<div class="caption-container">
+					<div class="caption">{{{description}}}</div>
+				</div>
+				{{#if learn_more_button}}
+				<a href="{{{url}}}" target="{{{url_target}}}"><div class="btn btn-primary">Learn More</div></a>
+				{{/if}}
+			</div>
+		</div>
+		{{/each}}
+	</div>
+	<div class="next-slide-container col-md-3 hidden-xs hidden-sm">
+		<div class="next-slide-image col-md-6 col-md-offset-2">
+		</div>
+		<div class="next-slide-text col-md-4">
+			<i class="icon-arrow-box"></i>
+			<span class="line"></span>
+			<h3 class="next-text"></h3>
+		</div>
+	</div>
+</div>

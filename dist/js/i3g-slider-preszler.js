@@ -1,5 +1,5 @@
 /*!
-* i3g-slider-preszler - v0.1.2
+* i3g-slider-preszler - v0.1.3
 * Homepage: http://i-3global.com
 * Author: i3Global
 * Author URL: http://i-3global.com/
@@ -60,13 +60,8 @@
 			var deferred = Q.defer(),
 				url;
 
-			// @ifdef PROD
 			url = config.API_SERVER + config.API_PATH + config.API_ENDPOINT;
-			// @endif
 
-			// @ifdef DEBUG
-			url = 'json/slideshow.json';
-			// @endif
 
 			console.log('url:',url);
 			$.get(url, function (data) {

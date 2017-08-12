@@ -5,7 +5,7 @@
 	$.app = $.app || {};
 	$.app.config = $.app.config || {
 		API_SERVER: '/',
-		API_PATH: 'preszler/wp-json/acf/v2/',
+		API_PATH: 'wp-json/acf/v2/',
 		API_ENDPOINT: 'options/slideshow'
 	};
 

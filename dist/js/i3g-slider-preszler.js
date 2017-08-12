@@ -1,5 +1,5 @@
 /*!
-* i3g-slider-preszler - v0.1.4
+* i3g-slider-preszler - v0.1.6
 * Homepage: http://i-3global.com
 * Author: i3Global
 * Author URL: http://i-3global.com/
@@ -11,7 +11,7 @@
 	$.app = $.app || {};
 	$.app.config = $.app.config || {
 		API_SERVER: '/',
-		API_PATH: 'preszler/wp-json/acf/v2/',
+		API_PATH: 'wp-json/acf/v2/',
 		API_ENDPOINT: 'options/slideshow'
 	};
 

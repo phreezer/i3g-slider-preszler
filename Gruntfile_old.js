@@ -2,21 +2,14 @@
 module.exports = function (grunt) {
 
 	var serveStatic = require('serve-static');
-	var appConfig = {
-		timestamp: new Date().toLocaleString(),
-		gitMessage: ''
-	};
 
 	grunt.initConfig({
-		config: appConfig,
 		app: require( './bower.json' ).appPath || 'src',
 		dist: 'dist',
-		example: 'examples',
 		pkg: grunt.file.readJSON('package.json'),
 		appName: '<%= pkg.name %>',
 		jsFileName: '<%= pkg.name %>',
 		cssFileName: '<%= pkg.name %>',
-
 		// The actual grunt server settings
 		connect: {
 			options: {
@@ -35,9 +28,7 @@ module.exports = function (grunt) {
 								res.setHeader('Access-Control-Allow-Methods', '*');
 								next();
 							}),
-							connect().use(
-								'/dist',
-								serveStatic( './dist' )),
+							serveStatic( 'dist' ),
 							connect().use(
 								'/bower_components',
 								serveStatic( './bower_components' )
@@ -50,7 +41,7 @@ module.exports = function (grunt) {
 			dist: {
 				options: {
 					open: true,
-					base: '<%= dist %>'
+					base: '<%= yeoman.dist %>'
 				}
 			}
 		},
@@ -59,18 +50,6 @@ module.exports = function (grunt) {
 			'* Homepage: <%= pkg.homepage %>\n' +
 			'* Author: <%= pkg.author.name %>\n' +
 			'* Author URL: <%= pkg.author.url %>\n*/\n',
-		clean: {
-			dist: {
-				files: [ {
-					dot: true,
-					src: [
-						'.tmp',
-						'<%= dist %>/{,*/}*',
-						'!<%= dist %>/.git*'
-					]
-				} ]
-			}
-		},
 		concat: {
 			options: {
 				separator: '\n\n',
@@ -102,16 +81,14 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				files: {
-					'.tmp/styles/main.css': '<%= app %>/scss/main.scss',
-					'.tmp/styles/bootstrap-theme.css': '<%= app %>/scss/bootstrap-theme.scss'
+					'.tmp/styles/main.css': '<%= app %>/scss/main.scss'
 				}
 			}
 		},
 		cssmin: {
 			dist: {
 				files: {
-					'<%= dist %>/css/<%= cssFileName %>.min.css': '.tmp/styles/main.css',
-					'<%= dist %>/css/bootstrap-theme.min.css': '.tmp/styles/bootstrap-theme.css'
+					'<%= dist %>/css/<%= cssFileName %>.min.css': '.tmp/styles/main.css'
 				}
 			}
 		},
@@ -182,75 +159,6 @@ module.exports = function (grunt) {
 				]
 			}
 		},
-		gitadd: {
-			task: {
-				options: {
-					all: true
-				}
-			}
-		},
-
-		gitcommit: {
-			local: {
-				options: {
-					message: '<%= config.gitMessage %>'
-				}
-			}
-		},
-		gittag: {
-			prod: {
-				options: {
-					tag: '<%= pkg.version %>',
-					message: '<%= config.gitMessage %>'
-				}
-			}
-		},
-		gitpush: {
-			origin: {
-				options: {
-					remote: 'origin',
-					branch: 'master',
-					tags: true
-					/*
-					replace --tags with --follow-tags when it is supported, may be the best option
-					*/
-				}
-			}
-		},
-		wiredep: {
-			app: {
-				src: [ '<%= example %>/*.html' ],
-				ignorePath: /\.\.\//
-			}
-		},
-		htmlbuild: {
-			dist: {
-				src: '<%= example %>/templates/example-template.html',
-				dest: '<%= example %>/index.html',
-				options: {
-					beautify: true,
-					prefix: '//some-cdn',
-					relative: true,
-					basePath: false,
-					scripts: {
-						bundle: [
-							'../<%= dist %>/js/*.js'
-						]
-					},
-					styles: {
-						bundle: [
-							'../<%= dist %>/css/bootstrap-theme.min.css',
-							'../<%= dist %>/css/<%= cssFileName %>.min.css'
-						]
-					}
-				}
-			}
-		},
-		removelogging: {
-			dist: {
-				src: [ '<%= app %>/js/**/*.js', '!<%= app %>/js/**/console-log.js' ]
-			}
-		},
 		watch: {
 			files: ['<%= concat.js.src %>', '<%= app %>/**/*.scss', '<%= app %>/**/*.html'],
 			tasks: ['jshint', 'concat', 'uglify', 'sass', 'cssmin', 'copy:sass', 'copy:images' , 'copy:fonts', 'copy:html'],
@@ -261,7 +169,6 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks( 'grunt-remove-logging' );
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-preprocess');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -270,46 +177,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-html-build');
-	grunt.loadNpmTasks('grunt-wiredep');
 	grunt.loadNpmTasks('grunt-sass');
-	grunt.loadNpmTasks('grunt-git');
 
-
-	grunt.registerTask( 'build', 'Build', function ( target ) {
-		appConfig.gitMessage = 'Local Dev ' + appConfig.timestamp;
-
-		grunt.task.run( [
-			'clean:dist',
-			'jshint',
-			'concat',
-			'uglify',
-			'sass',
-			'cssmin',
-			'copy:sass',
-			'copy:images',
-			'copy:fonts',
-			'copy:html',
-			'preprocess:prod',
-			'htmlbuild:dist',
-			'wiredep:app',
-			'gitadd:task',
-			'gitcommit:local'
-		]);
-	});
-
-	// Push to the remote Git Server
-	grunt.registerTask( 'push', 'Git Push', function ( target ) {
-		appConfig.gitMessage = 'Dev ' + appConfig.timestamp;
-		grunt.task.run(['build', 'gitpush:origin']);
-	});
-
-	// When a release is ready publish it on Github
-	grunt.registerTask( 'publish', 'Github Release', function ( target ) {
-		appConfig.gitMessage = 'Release ' + appConfig.timestamp;
-		grunt.task.run(['removelogging', 'build', 'gittag:prod', 'gitpush:origin']);
-	});
+	grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'sass', 'cssmin', 'copy:sass', 'copy:images' , 'copy:fonts', 'copy:fonts', 'preprocess:prod']);
 
 	grunt.registerTask('serve', ['jshint', 'concat', 'uglify', 'sass', 'cssmin', 'copy:sass', 'copy:images' , 'copy:fonts', 'copy:fonts', 'preprocess:dev', 'connect:livereload', 'watch']);
 

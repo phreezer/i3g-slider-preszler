@@ -1,5 +1,5 @@
 /*!
-* i3g-slider-preszler - v0.1.6
+* i3g-slider-preszler - v0.1.8
 * Homepage: http://i-3global.com
 * Author: i3Global
 * Author URL: http://i-3global.com/
@@ -62,10 +62,7 @@
 
 			url = config.API_SERVER + config.API_PATH + config.API_ENDPOINT;
 
-
-			console.log('url:',url);
 			$.get(url, function (data) {
-				console.log('data', data.slideshow);
 				cached = formatData(data.slideshow);
 				deferred.resolve(cached);
 			});
@@ -75,7 +72,6 @@
 
 
 		function get(options) {
-			console.log('options:', options);
 			config = getConfig(defaults, options);
 			var deferred = Q.defer();
 			if (cached === null) {
@@ -212,9 +208,7 @@
 			templateUpdate();
 
 			// Get JSON Feed
-			console.log('Init Directive');
 			$.serviceSlideshow().get().then(function(data) {
-				console.log('returned from Service:', data);
 				scope.slides = data;
 				templateUpdate();
 			});

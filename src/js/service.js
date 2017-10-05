@@ -61,10 +61,7 @@
 			// @ifdef DEBUG
 			url = 'json/slideshow.json';
 			// @endif
-
-			console.log('url:',url);
 			$.get(url, function (data) {
-				console.log('data', data.slideshow);
 				cached = formatData(data.slideshow);
 				deferred.resolve(cached);
 			});
@@ -74,7 +71,6 @@
 
 
 		function get(options) {
-			console.log('options:', options);
 			config = getConfig(defaults, options);
 			var deferred = Q.defer();
 			if (cached === null) {

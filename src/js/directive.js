@@ -104,9 +104,7 @@
 			templateUpdate();
 
 			// Get JSON Feed
-			console.log('Init Directive');
 			$.serviceSlideshow().get().then(function(data) {
-				console.log('returned from Service:', data);
 				scope.slides = data;
 				templateUpdate();
 			});
